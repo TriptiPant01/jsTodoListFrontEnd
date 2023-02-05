@@ -49,7 +49,7 @@ export default function Header() {
       dataType: "jsonp",
     });
   };
-  console.log(`http://localhost:8000/uploads/${userDetail.profilePic}`, "img");
+  // console.log(`http://localhost:8000/uploads/${userDetail.profilePic}`, "img");git
   return (
     <>
       <AppBar component="nav">

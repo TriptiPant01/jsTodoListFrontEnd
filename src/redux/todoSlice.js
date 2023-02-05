@@ -15,7 +15,7 @@ const initialState = {
 };
 
 export const fetchTodos = createAsyncThunk("todos/fetch", async () => {
-  const res = await fetch("http://localhost:8000/todo");
+  const res = await fetch("https://todolist-gjjz.onrender.com/todo");
   const data = await res.json();
   return data;
 });

@@ -1,1 +1,1 @@
-export const LOCALURL = "http://localhost:8000";
+export const LOCALURL = "https://todolistapi-xcgv.onrender.com";
