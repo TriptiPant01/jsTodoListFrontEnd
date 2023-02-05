@@ -31,9 +31,9 @@ export const registerUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
   "auth/login",
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ email, password, avatarIcon }, { rejectWithValue }) => {
     try {
-      const res = await login({ email, password });
+      const res = await login({ email, password, avatarIcon });
 
       if (!res) {
         return rejectWithValue(false);
@@ -88,6 +88,7 @@ export const authSlice = createSlice({
         state.userDetail = {
           fullname: action.payload.fullName,
           email: action.payload.email,
+          profilePic: action.payload.profilePic,
         };
       })
       .addCase(loginUser.rejected, (state, action) => {

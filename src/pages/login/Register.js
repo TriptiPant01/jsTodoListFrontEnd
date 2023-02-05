@@ -4,18 +4,48 @@ import { useNavigate } from "react-router-dom";
 import { Alert } from "@mui/material";
 import { registerUser } from "../../redux/authSlice";
 import { STATUSES } from "../../redux/todoSlice";
+import { LOCALURL } from "../../api/env";
+import axios from "axios";
+import { postDataToBackend } from "../../api/ApiService";
+const avator = require("../../avator.png");
 
 const Register = () => {
   const dispatch = useDispatch();
+  const [avatarIcon, setAvatarIcon] = useState(avator);
+
   const { isUserRegister, status } = useSelector((state) => state.auth);
   const [registerDetail, setregisterDetail] = useState({
     fullname: "test",
-    email: "itsmetripti20@gma",
+    email: "b@gma",
     password: "test",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // // image upload
+    // const formData = new FormData();
+    // formData.append("password", password);
+    // formData.append("email", email);
+    // formData.append("fullname", fullname);
+    // formData.append("myImage", avatarIcon);
+
+    // let config = {
+    //   method: "post",
+    //   url: `${LOCALURL}/register`,
+
+    //   data: formData,
+    // };
+
+    // await axios(config)
+    //   .then((res) => {
+    //     console.log(res);
+    //     alert("do something");
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
     dispatch(registerUser({ fullname, email, password }));
   };
   const handleOnChange = (e, type) => {
@@ -50,6 +80,17 @@ const Register = () => {
   //   );
   // }
 
+  const handleFileChange = async (e) => {
+    setAvatarIcon(e.target.files[0]);
+    // const formData = new FormData();
+    // formData.append("myImage", e.target.files[0]);
+    // await fetch(LOCALURL + "/profile", {
+    //   method: "POST",
+
+    //   body: formData,
+    //   dataType: "jsonp",
+    // });
+  };
   const { fullname, email, password } = registerDetail;
   return (
     <div className="registerform">
@@ -77,6 +118,7 @@ const Register = () => {
           className="inputfullname"
           onChange={(e) => handleOnChange(e, "password")}
         />
+        <input type="file" onChange={handleFileChange} />
         <button>Submit</button>
       </form>
     </div>

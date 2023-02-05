@@ -8,9 +8,9 @@ export const STATUSES = Object.freeze({
 });
 
 const initialState = {
-  todos: [{ id: 1, text: "asdf" }],
-  token: null,
-  isLoggedIn: false,
+  todos: [],
+  // token: null,
+  // isLoggedIn: false,
   status: STATUSES.IDLE,
 };
 

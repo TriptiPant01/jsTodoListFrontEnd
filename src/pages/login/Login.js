@@ -15,7 +15,7 @@ const Login = () => {
   }, [isLoggedIn]);
 
   const [loginDetail, setLoginDetail] = useState({
-    email: "test@gmail.com",
+    email: "z@gmail.com",
     password: "test",
   });
 
@@ -49,6 +49,13 @@ const Login = () => {
           className="inputfullname"
           onChange={(e) => handleOnChange(e, "password")}
         />
+        {/* <input type="file" onChange={handleFileChange} /> */}
+        {/* <img
+          src={avatarIcon}
+          width="100"
+          height="80"
+          // onClick={handleChangeProfilePicture}
+        /> */}
         <button>Login</button>
       </form>
     </div>

@@ -7,6 +7,8 @@ import TodoForm from "./component/TodoForm";
 import CompletedList from "./component/CmpletedList";
 import { fetchTodos, addTodos, updateTodo } from "../redux/todoSlice";
 import { STATUSES } from "../redux/todoSlice";
+import axios from "axios";
+import { LOCALURL } from "../api/env";
 
 export default function index() {
   const { todos: todosFromRedux, status } = useSelector((state) => state.todo);
@@ -92,6 +94,23 @@ export default function index() {
     await dispatch(fetchTodos());
   };
 
+  const handleCompleteAllAPI = async () => {
+    let config = {
+      method: "post",
+      url: `${LOCALURL}/todo/updateAll`,
+    };
+
+    await axios(config)
+      .then((res) => {
+        console.log(res);
+        dispatch(fetchTodos());
+
+        alert("do something");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   if (status === STATUSES.LOADING) {
     return (
       <div className="loading">
@@ -113,7 +132,7 @@ export default function index() {
       <div className="completed-list-tab">
         <div>
           <button onClick={() => handleDeleteForAll()}>Delete All</button>
-          <button onClick={() => handleDeleteForAll()}>Complete All</button>
+          <button onClick={() => handleCompleteAllAPI()}>Complete All</button>
         </div>
 
         <div>
